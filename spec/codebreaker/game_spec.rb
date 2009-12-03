@@ -37,6 +37,22 @@ module Codebreaker
 					@game.guess(%w[y r g c])
 				end
 			end
+			context "with duplicates in the guess that match a peg in the code" do
+				context "by color and position" do
+					it "should add a single b to the mark" do
+						@game.start(%w[r y g c])
+						@messenger.should_receive(:puts).with("bbb")
+						@game.guess(%w[r y g g])
+					end
+				end
+				context "with three colors correct in the correct places" do
+					it "should mark the guess with bbb" do
+						@game.start(%w[r g y c])
+						@messenger.should_receive(:puts).with("bbb")
+						@game.guess(%w[r g y w])
+					end
+				end
+			end
 		end
 	end
 end

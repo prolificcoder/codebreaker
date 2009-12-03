@@ -10,6 +10,9 @@ def messages_should_include(message)
 	messenger.string.split("\n").should include(message)
 end
 
+def fixnum_from(string) 
+	string.scan(/\d/).join.to_i
+end
 Given /^I am not yet playing$/ do
 end
 
@@ -31,5 +34,26 @@ end
 
 Then /^the mark should be (.*)$/ do |mark|
 	messages_should_include(mark)
+end
+
+Given /^6 colors$/ do
+end
+
+Given /^4 positions$/ do
+end
+
+When /^I play (.*) games$/ do |number|
+		fixnum_from(number).times do
+			game.start
+		end
+	end
+end
+
+Then /^each color should appear between 1500 and 1800 times in each position$/ do
+			  pending # express the regexp above with the code you wish you had
+end
+
+Then /^each color should appear no more than once in each secret code$/ do
+				  pending # express the regexp above with the code you wish you had
 end
 
